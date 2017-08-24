@@ -6,6 +6,7 @@ bin/rake db:create
 bin/rake db:migrate
 bin/rake db:seed
 bin/rails s
+open http://localhost:3000/graphiql
 ```
 
 # Sample calls
