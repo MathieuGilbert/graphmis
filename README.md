@@ -1,14 +1,16 @@
 # Setup
 
+```bash
 bundle install
 bin/rake db:create
 bin/rake db:migrate
 bin/rake db:seed
 bin/rails s
+```
 
 # Sample calls
 
-###Lookup a user
+### Lookup a user
 ```javascript
 query {
   user(id: 1) {
@@ -16,7 +18,7 @@ query {
     last_name
     email_address
     membership {
-			number
+      number
       balance_due
       join_date
       coverage_type {
@@ -26,7 +28,7 @@ query {
       }
     }
     address {
-			address
+      address
       city
       province
       postal_code
@@ -35,7 +37,7 @@ query {
 }
 ```
 
-###Get all users
+### Get all users
 ```javascript
 query {
   users {
@@ -47,7 +49,7 @@ query {
 }
 ```
 
-###Lookup a membership by number
+### Lookup a membership by number
 ```javascript
 query {
   membership(number: "456789") {
@@ -64,7 +66,7 @@ query {
 }
 ```
 
-###Get all memberships
+### Get all memberships
 ```javascript
 query {
   memberships {
@@ -86,7 +88,7 @@ query {
 }
 ```
 
-###Update a user's email address
+### Update a user's email address
 ```javascript
 mutation {
   updateUserEmail(input: {
