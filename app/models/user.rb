@@ -1,5 +1,5 @@
 class User < ApplicationRecord
   belongs_to :membership
-  has_one :address
+  belongs_to :address
 
 end

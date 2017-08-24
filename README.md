@@ -1,24 +1,100 @@
-# README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+bundle install
+bin/rake db:create
+bin/rake db:migrate
+bin/rake db:seed
+bin/rails s
 
-Things you may want to cover:
+# Sample calls
 
-* Ruby version
+###Lookup a user
+```javascript
+query {
+  user(id: 1) {
+    first_name
+    last_name
+    email_address
+    membership {
+			number
+      balance_due
+      join_date
+      coverage_type {
+        name
+        monthly_price
+        tow_distance
+      }
+    }
+    address {
+			address
+      city
+      province
+      postal_code
+    }
+  }
+}
+```
 
-* System dependencies
+###Get all users
+```javascript
+query {
+  users {
+    id
+    first_name
+    last_name
+    email_address
+  }
+}
+```
 
-* Configuration
+###Lookup a membership by number
+```javascript
+query {
+  membership(number: "456789") {
+    number
+    balance_due
+    coverage_type {
+      monthly_price
+    }
+    users {
+      first_name
+      last_name
+    }
+  }
+}
+```
 
-* Database creation
+###Get all memberships
+```javascript
+query {
+  memberships {
+    number
+    balance_due
+    coverage_type {
+      monthly_price
+    }
+    users {
+      first_name
+      last_name
+      address {
+        address
+        city
+        postal_code
+      }
+    }
+  }
+}
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###Update a user's email address
+```javascript
+mutation {
+  updateUserEmail(input: {
+    user_id: 1,
+    email_address: "lisa@example.com"
+  })
+  {
+    user { email_address }
+  }
+}
+```
